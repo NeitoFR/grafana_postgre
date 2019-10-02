@@ -19,6 +19,8 @@ services:
       - 3000
     environment:
       - NO_PROXY
+      - GF_SERVER_DOMAIN=ip-10-227-54-255.ec2.internal
+      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s/grafana/
     volumes:
       - grafana_data:/var/lib/grafana
       - grafana_data:/var/log/grafana
