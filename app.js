@@ -1,5 +1,7 @@
 const moment = require('moment-timezone'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    pg = require('pg'),
+    format = require('pg-format');
 
 var now = moment(),
     all_meter = 1720405,
@@ -22,6 +24,33 @@ for(i; i > 0; i--) {
 console.log(tab);
 
 console.log('Total meter fixed : '+ fixed+" Total meter added : "+ (tab[tab.length-1][1] - tab[0][1]));
+try {
+    const client = new Client({
+        user: 'ingestion_test_user',
+        password: 'ingestion_test_user',
+        host: 'localhost',
+        database: 'ingestion_test',
+        port: 5432,
+    })
+    client.connect((err) => {
+        if(err)
+            console.log(err);
+            
+    })
+
+    let query = format('INSERT INTO analyze_run(start_time, analyzed_meter, mismatches_count, fixed_meter) VALUES %L ', tab);
+
+    client.query(query).then(res => {
+        console.log("Query insert ok");
+        
+    }).catch(err => {
+        console.log("catch error", err);
+        
+    })
+} catch (error) {
+    console.log(error);
+    
+}
 
 
 function calcAnazyled(a) {
