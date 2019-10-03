@@ -1,6 +1,6 @@
 const moment = require('moment-timezone'),
     _ = require('lodash'),
-    pg = require('pg'),
+    {Client} = require('pg'),
     format = require('pg-format');
 
 var now = moment(),
