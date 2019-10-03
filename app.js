@@ -51,7 +51,7 @@ try {
 
     client.query(query).then(res => {
         console.log("Query insert ok");
-        
+        process.exit(0);
     }).catch(err => {
         console.log("catch error", err);
         
