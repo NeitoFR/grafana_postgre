@@ -37,8 +37,17 @@ try {
             console.log(err);
             
     })
+    let query = "TRUNCATE TABLE analyze_run;"
+    
+    client.query(query).then(res => {
+        console.log("Query insert ok");
+        
+    }).catch(err => {
+        console.log("catch error", err);
+        
+    })
 
-    let query = format('INSERT INTO analyze_run(start_time, analyzed_meter, mismatches_count, fixed_meter) VALUES %L ', tab);
+    query = format('INSERT INTO analyze_run(start_time, analyzed_meter, mismatches_count, fixed_meter) VALUES %L ', tab);
 
     client.query(query).then(res => {
         console.log("Query insert ok");
