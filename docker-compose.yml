@@ -6,7 +6,7 @@ services:
     container_name: postgres
     hostname: postgres
     ports:
-      - 5432
+      - 5432:5432
     env_file: ./conf/pg-env.list
     volumes:
       - postgres_data:/var/lib/postgresql
