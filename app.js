@@ -40,7 +40,7 @@ try {
     let query = "TRUNCATE TABLE analyze_run;"
     
     client.query(query).then(res => {
-        console.log("Query insert ok");
+        console.log("Query truncate ok");
         
     }).catch(err => {
         console.log("catch error", err);
