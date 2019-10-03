@@ -14,7 +14,7 @@ for(i; i > 0; i--) {
     cur_fixed = calcFixed()
     tab.push(
         [
-            moment(now).subtract(i, 'months').format("YYYY-MM-DD HH:mm:SSZZ"),
+            moment(now).startOf('day').subtract(i, 'months').format("YYYY-MM-DD HH:mm:SSZZ"),
             all_meter = calcAnazyled(all_meter),
             mismatches_count -= cur_fixed,
             fixed += cur_fixed
