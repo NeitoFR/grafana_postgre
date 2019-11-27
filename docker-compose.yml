@@ -1,15 +1,16 @@
 version: "3.4"
 
 services:
-  postgres:
-    image: postgres:10.10-alpine
-    container_name: postgres
-    hostname: postgres
+
+  timescale:
+    image: timescale/timescaledb:latest-pg10
+    container_name: timescale
+    hostname: timescale
     ports:
       - 5432:5432
-    env_file: ./conf/pg-env.list
+    env_file: ./conf/timescale-env.list
     volumes:
-      - postgres_data:/var/lib/postgresql
+      - timescale_data:/var/lib/postgresql
 
   grafana:
     image: grafana/grafana:6.3.4
@@ -57,11 +58,11 @@ services:
       - 80:80
 
 volumes:
-  postgres_data:
-    name: postgres_data
   pgadmin_data:
     name: pgadmin_data
   grafana_data:
     name: grafana_data
   portainer_data:
     name: portainer_data
+  timescale_data:
+    name: timescale_data
